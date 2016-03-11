@@ -80,7 +80,7 @@ USAGE
         required_group = parser.add_argument_group("required arguments")
         required_group.add_argument("-s", "--stylesheet", metavar="FILE", required=True, help="XSLT stylesheet to use for transforming the output. [REQUIRED]")
         required_group.add_argument("-x", "--xml", metavar="FILE", required=True, help="XML output file to transform. [REQUIRED]")
-        required_group.add_argument("-o", "--out", dest="out", metavar="FILE", help="output file to write. [REQUIRED]")
+        parser.add_argument("-o", "--out", dest="out", metavar="FILE", help="output file to write.")
         parser.add_argument('-V', '--version', action='version', version=program_version_message)
 
         # Process arguments
@@ -89,14 +89,16 @@ USAGE
         stylesheet = args.stylesheet
         xml_file = args.xml
         out_file = args.out
+        run_name = "TB_ASAP"
 
-#         if not out_dir:
-#             out_dir = os.getcwd()
-#        
-#         out_dir = dispatcher.expandPath(out_dir)
-# 
-#         if not os.path.exists(out_dir):
-#             os.makedirs(out_dir)
+        match = re.search('^(.*)_analysis.xml$', xml_file)
+        if match:
+            run_name = match.group(1)
+            
+        os.makedirs(run_name)
+
+        if not out_file:
+            out_file = run_name + ".html"
 
         dom = ET.parse(xml_file)
         xslt = ET.parse(stylesheet)
