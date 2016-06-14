@@ -35,7 +35,7 @@ setup(
     install_requires=requirements,
     license="Academic and Research License",
     zip_safe=False,
-    keywords='asap','TB','amplicon'
+    keywords='asap','TB','amplicon',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
