@@ -58,12 +58,9 @@ installation
 Running TB-ASAP
 ~~~~~~~~~~~~~~~
 
--  ``analyzeAmplicons -n <RUN_NAME> -j <INSTALL_DIR>/assay_data/Mtb6.json -r <DIRECTORY_OF_READ_FILES> -o <OUTPUT_DIR>``
+-  ``analyzeAmplicons -n <RUN_NAME> -j <INSTALL_DIR>/assay_data/Mtb6.json -r <DIRECTORY_OF_READ_FILES> -o <OUTPUT_DIR> --breadth 0``
 
-This will run TB-ASAP with the default paramaters, submitting all of the
-jobs using PBS/torque and exiting. The final output file will be
-``<OUTPUT_DIR>/<RUN_NAME>_analysis.xml``. To see all of the additional
-options available, run ``analyzeAmplicons --help``.
+This will run TB-ASAP with the default paramaters, but turning off coverage breadth checking, since the reference sequences include flanking regions, submitting all of the jobs using PBS/torque and exiting. The final output file will be ``<OUTPUT_DIR>/<RUN_NAME>_analysis.xml``. To see all of the additional options available, run ``analyzeAmplicons --help``.
 
 -  Change into the ``<OUTPUT_DIR>`` and run:
    ``formatOutput -s <INSTALL_DIR>/output_transforms/TB_RunResults_Mtb6.xsl -x <RUN_NAME>_analysis.xml``
